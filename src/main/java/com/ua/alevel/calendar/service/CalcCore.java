@@ -153,7 +153,7 @@ public class CalcCore {
                 case (3) -> value = Correct.convertInIntArrayThree(s);
                 case (4) -> value = Correct.convertInIntArrayFour(s);
             }
-            long dateLong = value[0] * 86400L + value[1] * 2419200L + value[2] * 31536000L + value[3] * 3600L + value[4] * 60L + value[5];
+            long dateLong = value[0] * 86400L + value[1] * 2419200L + value[2] * 3153600L + value[3] * 3600L + value[4] * 60L + value[5];
             answer.add(dateLong);
         });
         sortedAnswer = answer.stream().sorted().collect(Collectors.toList());
@@ -177,14 +177,13 @@ public class CalcCore {
         data[1] = (answer / 2419200L);
         answer = answer % 2419200L;
         data[0] = (answer / 86400L);
-        int p = Arrays.stream(Months.values()).filter(months -> months.getMountsNumber() == data[1]).findFirst().map(Months::getDays).get();
-        if (data[0] > p){
-            data[1]++;
-            data[0] -= p;
-        }
-        if (data[1] > 12){
-            data[2]++;
-            data[1] -= 12;
+        if (data[1] != 0) {
+            int p = Arrays.stream(Months.values()).filter(months -> months.getMountsNumber() == data[1]).findFirst().map(Months::getDays).get();
+            if (data[0] > p) {
+                data[1]++;
+                data[0] -= p;
+            }
+
         }
         answer = answer % 86400L;
         data[3] = (answer / 3600);
