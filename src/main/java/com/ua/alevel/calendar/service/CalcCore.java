@@ -1,7 +1,9 @@
 package com.ua.alevel.calendar.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class CalcCore {
@@ -181,6 +183,15 @@ public class CalcCore {
         data[1] = (answer / 2592000L);
         answer = answer % 2592000L;
         data[0] = (answer / 86400L);
+        int p = Arrays.stream(Months.values()).filter(months -> months.getMountsNumber() == data[1]).findFirst().map(Months::getDays).get();
+        if (data[0] > p){
+            data[1]++;
+            data[0] -= p;
+        }
+        if (data[1] > 12){
+            data[2]++;
+            data[1] -= 12;
+        }
         answer = answer % 86400L;
         data[3] = (answer / 3600);
         answer = answer % 3600;
