@@ -32,17 +32,11 @@ public class CalcCore {
             }
         }
 
-        long f = first[0] * 86400L + first[1] * 2592000L + first[2] * 31536000L + first[3] * 3600L + first[4] * 60L + first[5];
+        long f = first[0] * 86400L + first[1] * 2419200L + first[2] * 31536000L + first[3] * 3600L + first[4] * 60L + first[5];
         long s = second[0] * 86400L + second[1] * 2592000L + second[2] * 31536000L + second[3] * 3600L + second[4] * 60L + second[5];
         long difference = Math.abs(f - s);
         long leapYear = difference / (4 * 31536000L);
         difference += leapYear * 2592000L;
-        /*return switch (format) {
-            case (1) -> Correct.outFormatOne(giveMeAnswerArray(difference));
-            case (2) -> Correct.outFormatTwo(giveMeAnswerArray(difference));
-            case (3) -> Correct.outFormatThree(giveMeAnswerArray(difference));
-            case (4) -> Correct.outFormatFour(giveMeAnswerArray(difference));
-            default -> Correct.outFormatTwo(giveMeAnswerArray(difference));*/
         return Correct.outForDifference(giveMeAnswerArray(difference));
     }
 
@@ -67,7 +61,7 @@ public class CalcCore {
                 addArray = Correct.giveMeTimeInArray(add);
             }
         }
-        long dateLong = Math.abs(date[0] * 86400L + date[1] * 2592000L + date[2] * 31536000L + date[3] * 3600L + date[4] * 60L + date[5]);
+        long dateLong = Math.abs(date[0] * 86400L + date[1] * 2419200L + date[2] * 31536000L + date[3] * 3600L + date[4] * 60L + date[5]);
         long addLong = Math.abs(addArray[0] * 86400L + addArray[1] * 2592000L + addArray[2] * 31536000L + addArray[3] * 3600L + addArray[4] * 60L + addArray[5]);
         long answer = dateLong + addLong;
         return switch (format) {
@@ -102,7 +96,7 @@ public class CalcCore {
                 addArray = Correct.giveMeTimeInArray(add);
             }
         }
-        long dateLong = date[0] * 86400L + date[1] * 2592000L + date[2] * 31536000L + date[3] * 3600L + date[4] * 60L + date[5];
+        long dateLong = date[0] * 86400L + date[1] * 2419200L + date[2] * 31536000L + date[3] * 3600L + date[4] * 60L + date[5];
         long addLong = addArray[0] * 86400L + addArray[1] * 2592000L + addArray[2] * 31536000L + addArray[3] * 3600L + addArray[4] * 60L + addArray[5];
         long answer = dateLong - addLong;
         return switch (format) {
@@ -128,7 +122,7 @@ public class CalcCore {
                 case (3) -> value = Correct.convertInIntArrayThree(s);
                 case (4) -> value = Correct.convertInIntArrayFour(s);
             }
-            long dateLong = value[0] * 86400L + value[1] * 2592000L + value[2] * 31536000L + value[3] * 3600L + value[4] * 60L + value[5];
+            long dateLong = value[0] * 86400L + value[1] * 2419200L + value[2] * 31536000L + value[3] * 3600L + value[4] * 60L + value[5];
             answer.add(dateLong);
         });
         sortedAnswer = answer.stream().sorted().collect(Collectors.toList());
@@ -159,7 +153,7 @@ public class CalcCore {
                 case (3) -> value = Correct.convertInIntArrayThree(s);
                 case (4) -> value = Correct.convertInIntArrayFour(s);
             }
-            long dateLong = value[0] * 86400L + value[1] * 2592000L + value[2] * 31536000L + value[3] * 3600L + value[4] * 60L + value[5];
+            long dateLong = value[0] * 86400L + value[1] * 2419200L + value[2] * 31536000L + value[3] * 3600L + value[4] * 60L + value[5];
             answer.add(dateLong);
         });
         sortedAnswer = answer.stream().sorted().collect(Collectors.toList());
@@ -180,8 +174,8 @@ public class CalcCore {
         long[] data = new long[6];
         data[2] =  (answer / 31536000L);
         answer = answer % 31536000L;
-        data[1] = (answer / 2592000L);
-        answer = answer % 2592000L;
+        data[1] = (answer / 2419200L);
+        answer = answer % 2419200L;
         data[0] = (answer / 86400L);
         int p = Arrays.stream(Months.values()).filter(months -> months.getMountsNumber() == data[1]).findFirst().map(Months::getDays).get();
         if (data[0] > p){
